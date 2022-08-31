@@ -1,9 +1,9 @@
 <template>
   <button :class="btnClass" :disabled="loading" @click="$emit('click',$event)">
     <!-- 普通icon -->
-    <zh-icon :icon="icon" v-if="icon && !loading" class="icon"></zh-icon>
+    <sm-icon :icon="icon" v-if="icon && !loading" class="icon"></sm-icon>
     <!-- loading 的icon -->
-    <zh-icon icon="loading" v-if="loading" class="icon"></zh-icon>
+    <sm-icon icon="loading" v-if="loading" class="icon"></sm-icon>
     <!-- 文本内容 -->
     <span v-if="this.$slots.default">
       <slot></slot>
@@ -12,9 +12,7 @@
 </template>
 
 <script>
-import { getComponentName } from "../util.js"
-
-const name = getComponentName("Button")
+const name = "sm-button"
 export default {
   name,
   props: {
