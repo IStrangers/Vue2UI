@@ -1,11 +1,13 @@
 {
-  "name": "ui",
+  "name": "smui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name smui ./src/packages/index.js"
   },
+  "main": "./dist/smui.umd.min.js",
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^2.6.14"
