@@ -90,6 +90,35 @@
         </sm-container>
       </sm-container>
     </p>
+    <p>
+      <sm-input 
+      v-model="userName" 
+      type="text" 
+      name="userName"
+      placeholder="请输入"
+      :disabled="userName.length >= 3"
+      :clearable="true">
+      </sm-input>
+      {{userName}}
+      <sm-input 
+      v-model="userName" 
+      type="password" 
+      name="userName"
+      placeholder="请输入"
+      :disabled="userName.length >= 3"
+      :showPassword="true">
+      </sm-input>
+      <sm-input 
+      type="text" 
+      placeholder="前Icon"
+      prefix-icon="edit">
+      </sm-input>
+      <sm-input 
+      type="text" 
+      placeholder="后Icon"
+      suffix-icon="edit">
+      </sm-input>
+    </p>
   </div>
 </template>
 
@@ -99,6 +128,11 @@ export default {
   name: 'App',
   components: {
 
+  },
+  data() {
+    return {
+      userName: ""
+    }
   }
 }
 </script>
