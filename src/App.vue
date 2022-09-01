@@ -24,6 +24,19 @@
       <sm-icon icon="sousuo"></sm-icon>
       <sm-icon icon="edit"></sm-icon>
     </p>
+    <p>
+      <sm-row :gutter="50" justify="start">
+        <sm-col :xs="2" :sm="6" :md="4" :lg="3" :xl="1">
+          <div>col1</div>
+        </sm-col>
+        <sm-col>
+          <div>col2</div>
+        </sm-col>
+        <sm-col :offset="6">
+          <div>col3</div>
+        </sm-col>
+      </sm-row>
+    </p>
   </div>
 </template>
 
