@@ -37,6 +37,59 @@
         </sm-col>
       </sm-row>
     </p>
+    <p>
+      <sm-container>
+        <sm-header>Header</sm-header>
+        <sm-main>Main</sm-main>
+      </sm-container>
+
+      <sm-container>
+        <sm-header>Header</sm-header>
+        <sm-main>Main</sm-main>
+        <sm-footer>Footer</sm-footer>
+      </sm-container>
+
+      <sm-container>
+        <sm-aside width="200px">Aside</sm-aside>
+        <sm-main>Main</sm-main>
+      </sm-container>
+
+      <sm-container>
+        <sm-header>Header</sm-header>
+        <sm-container>
+          <sm-aside width="200px">Aside</sm-aside>
+          <sm-main>Main</sm-main>
+        </sm-container>
+      </sm-container>
+
+      <sm-container>
+        <sm-header>Header</sm-header>
+        <sm-container>
+          <sm-aside width="200px">Aside</sm-aside>
+          <sm-container>
+            <sm-main>Main</sm-main>
+            <sm-footer>Footer</sm-footer>
+          </sm-container>
+        </sm-container>
+      </sm-container>
+
+      <sm-container>
+        <sm-aside width="200px">Aside</sm-aside>
+        <sm-container>
+          <sm-header>Header</sm-header>
+          <sm-main>Main</sm-main>
+        </sm-container>
+      </sm-container>
+
+      <sm-container>
+        <sm-aside width="200px">Aside</sm-aside>
+        <sm-container>
+          <sm-header>Header</sm-header>
+          <sm-main>Main</sm-main>
+          <sm-footer>Footer</sm-footer>
+        </sm-container>
+      </sm-container>
+    </p>
   </div>
 </template>
 
@@ -53,5 +106,39 @@ export default {
 <style lang="scss">
   p{
     margin: 30px;
+  }
+
+  .sm-header, .sm-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  .sm-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .sm-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  
+  body > .sm-container {
+    margin-bottom: 40px;
+  }
+  
+  .sm-container:nth-child(5) .sm-aside,
+  .sm-container:nth-child(6) .sm-aside {
+    line-height: 260px;
+  }
+  
+  .sm-container:nth-child(7) .sm-aside {
+    line-height: 320px;
   }
 </style>
