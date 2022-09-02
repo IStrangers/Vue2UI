@@ -2,6 +2,7 @@
   <div :class="getComponentName()">
     <sm-upload-drag 
     v-if="drag"
+    @click="handleClick"
     @file="uploadFiles">
     </sm-upload-drag>
     <template v-else>
@@ -11,7 +12,6 @@
       <div>
         <slot name="tip"></slot>
       </div>
-      <input ref="fileInput" type="file" :name="name" :accept="accept" :multiple="multiple" @change="handleChange">
     </template>
     <div>
         <ul>
@@ -26,6 +26,7 @@
           </li>
         </ul>
     </div>
+    <input ref="fileInput" type="file" :name="name" :accept="accept" :multiple="multiple" @change="handleChange">
   </div>
 </template>
 

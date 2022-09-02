@@ -135,6 +135,23 @@
       :before-upload="beforeUpload"
       :drag="true"
       >
+      </sm-upload>
+    </p>
+    <p>
+      <sm-upload
+      name="uploadFile"
+      action="localhost:8080"
+      accept="image/jpeg"
+      :file-list="fileList"
+      :limit="3"
+      :multiple="true"
+      :on-exceed="onExceed"
+      :on-change="onChange"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :on-progress="onProgress"
+      :before-upload="beforeUpload"
+      >
         <sm-button 
         type="primary"
         icon="shangchuan">
