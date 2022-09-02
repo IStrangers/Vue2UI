@@ -9,6 +9,7 @@ import Footer from "./container/footer/index.vue"
 import Header from "./container/header/index.vue"
 import Main from "./container/main/index.vue"
 import Input from "./input/index.vue"
+import Progress from "./progress/index.vue"
 import Upload from "./upload/index.vue"
 
 function install(vue) {
@@ -23,6 +24,7 @@ function install(vue) {
   vue.component(Header.name,Header)
   vue.component(Main.name,Main)
   vue.component(Input.name,Input)
+  vue.component(Progress.name,Progress)
   vue.component(Upload.name,Upload)
 }
 

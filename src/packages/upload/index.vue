@@ -1,26 +1,44 @@
 <template>
   <div :class="getComponentName()">
-    <div @click="handleClick" :class="getComponentName() + '-button'">
-      <slot></slot>
-    </div>
+    <sm-upload-drag 
+    v-if="drag"
+    @file="uploadFiles">
+    </sm-upload-drag>
+    <template v-else>
+      <div @click="handleClick" :class="getComponentName() + '-button'">
+        <slot></slot>
+      </div>
+      <div>
+        <slot name="tip"></slot>
+      </div>
+      <input ref="fileInput" type="file" :name="name" :accept="accept" :multiple="multiple" @change="handleChange">
+    </template>
     <div>
-      <slot name="tip"></slot>
+        <ul>
+          <li v-for="file in files" :key="file.uid">
+            <div :class="getComponentName() + '-list-file'">
+              <sm-icon icon="file"></sm-icon>
+              {{file.name}}
+              <sm-progress v-if="file.status === 'uploading'" :percentage="file.percentage"></sm-progress>
+              {{file.status}}
+              <sm-icon icon="cha"></sm-icon>
+            </div>
+          </li>
+        </ul>
     </div>
-    <input 
-    ref="fileInput" 
-    type="file" 
-    :name="name"
-    :accept="accept"
-    :multiple="multiple"
-    @change="handleChange"
-    >
   </div>
 </template>
 
 <script>
+import SmUploadDrag from "./upload-drag.vue"
+import ajax from "../../utils/ajax.js"
+
 const name = "sm-upload"
 export default {
   name,
+  components: {
+    SmUploadDrag
+  },
   props:{
     name: {
       type: String,
@@ -63,11 +81,20 @@ export default {
     beforeUpload: {
       type: Function,
     },
+    httpRequest: {
+      type: Function,
+      default: ajax
+    },
+    drag: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
       tempIndex: 1,
       files: [],
+      requestMap: {},
     }
   },
   watch: {
@@ -122,13 +149,58 @@ export default {
       this.onChange && this.onChange(file)
     },
     upload(rawFile) {
-      if(!this.beforeUpload || this.beforeUpload() === true) {
+      if(!this.beforeUpload || this.beforeUpload(rawFile) === true) {
         return this.post(rawFile)
       }
     },
     post(rawFile) {
+      const uid = rawFile.uid
+      const options = {
+        file: rawFile,
+        filename: this.name,
+        action: this.action,
+        onProgress: ev => {
+          this.handleProgress(ev,rawFile)
+        },
+        onSuccess: res => {
+          this.handleSuccess(res,rawFile)
+        },
+        onError: err => {
+          this.handleError(err,rawFile)
+        }
+      }
+      const req = this.httpRequest(options)
+      this.requestMap[uid] = req
+      if(req && req.then) {
+        req.then(options.onSuccess,options.onError)
+      } else {
+      }
+    },
+    httpReques(options) {
 
-    }
+    },
+    handleProgress(ev,rawFile) {
+      const file = this.getFile(rawFile)
+      file.status = "uploading"
+      file.percentage = ev.percent || 0
+      this.onProgress(ev,rawFile)
+    },
+    handleSuccess(res,rawFile) {
+      const file = this.getFile(rawFile)
+      file.status = "success"
+      this.onSuccess(res,rawFile)
+      this.onChange(file)
+    },
+    handleError(err,rawFile) {
+      const file = this.getFile(rawFile)
+      file.status = "fail"
+      this.onError(err,rawFile)
+      this.onChange(file)
+      delete this.requestMap[file.uid]
+    },
+    getFile(rawFile) {
+      return this.files.find(file => file.uid === rawFile.uid)
+    },
   }
 }
 </script>

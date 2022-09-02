@@ -133,6 +133,7 @@
       :on-error="onError"
       :on-progress="onProgress"
       :before-upload="beforeUpload"
+      :drag="true"
       >
         <sm-button 
         type="primary"
@@ -162,19 +163,19 @@ export default {
   },
   methods: {
     onExceed() {
-      alert("onExceed")
+      console.log("onExceed")
     },
     onChange() {
-      alert("onChange")
+      console.log("onChange")
     },
     onSuccess() {
-      alert("onSuccess")
+      console.log("onSuccess")
     },
     onError() {
-      alert("onError")
+      console.log("onError")
     },
     onProgress() {
-      alert("onProgress")
+      console.log("onProgress")
     },
     beforeUpload(rawFile) {
       if((rawFile.size / 1024) > 500) {
