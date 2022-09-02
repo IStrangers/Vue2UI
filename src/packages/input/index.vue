@@ -134,7 +134,7 @@ export default {
     input {
       padding: 8px;
       width: 150px;
-      height: 42px;
+      height: 35px;
       border-radius: $border-radius;
       border: 1px solid $border-color;
 
@@ -160,7 +160,7 @@ export default {
       cursor: pointer;
       position: absolute;
       left: 8px;
-      top: 13px;
+      top: 10px;
       width: 14.5px;
       height: 14.5px;
     }
@@ -175,7 +175,7 @@ export default {
       cursor: pointer;
       position: absolute;
       right: 8px;
-      top: 13px;
+      top: 10px;
       width: 14.5px;
       height: 14.5px;
     }

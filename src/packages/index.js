@@ -9,6 +9,7 @@ import Footer from "./container/footer/index.vue"
 import Header from "./container/header/index.vue"
 import Main from "./container/main/index.vue"
 import Input from "./input/index.vue"
+import Upload from "./upload/index.vue"
 
 function install(vue) {
   vue.component(Icon.name,Icon)
@@ -22,6 +23,7 @@ function install(vue) {
   vue.component(Header.name,Header)
   vue.component(Main.name,Main)
   vue.component(Input.name,Input)
+  vue.component(Upload.name,Upload)
 }
 
 if(window.Vue) {

@@ -119,6 +119,31 @@
       suffix-icon="edit">
       </sm-input>
     </p>
+    <p>
+      <sm-upload
+      name="uploadFile"
+      action="localhost:8080"
+      accept="image/jpeg"
+      :file-list="fileList"
+      :limit="3"
+      :multiple="true"
+      :on-exceed="onExceed"
+      :on-change="onChange"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :on-progress="onProgress"
+      :before-upload="beforeUpload"
+      >
+        <sm-button 
+        type="primary"
+        icon="shangchuan">
+          点击上传
+        </sm-button>
+        <div slot="tip">
+          只能上传jpg/png文件，且不超过500kb
+        </div>
+      </sm-upload>
+    </p>
   </div>
 </template>
 
@@ -131,8 +156,32 @@ export default {
   },
   data() {
     return {
-      userName: ""
+      userName: "",
+      fileList: []
     }
+  },
+  methods: {
+    onExceed() {
+      alert("onExceed")
+    },
+    onChange() {
+      alert("onChange")
+    },
+    onSuccess() {
+      alert("onSuccess")
+    },
+    onError() {
+      alert("onError")
+    },
+    onProgress() {
+      alert("onProgress")
+    },
+    beforeUpload(rawFile) {
+      if((rawFile.size / 1024) > 500) {
+        return false
+      }
+      return true
+    },
   }
 }
 </script>
