@@ -156,7 +156,7 @@ export default {
 
   .sm-input-prefix-icon {
     input {
-      padding-left: 25px;
+      padding-left: 30px;
     }
 
     .sm-icon {
@@ -171,7 +171,7 @@ export default {
 
   .sm-input-suffix-icon {
     input {
-      padding-right: 25px;
+      padding-right: 30px;
     }
 
     .sm-icon {

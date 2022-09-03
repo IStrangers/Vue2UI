@@ -3,7 +3,7 @@
 
     <sm-input 
     placeholder="选择日期"
-    prefix-icon="rili" 
+    prefix-icon="date" 
     @focus="handleFocus"
     :value="formateDate"
     @change="handleChange"

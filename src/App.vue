@@ -170,6 +170,25 @@
       v-model="dateRangePicker"
       ></sm-date-range-picker>
     </p>
+    <p>
+      <sm-carousel
+      height="200px"
+      :autoplay="true"
+      :delay="3000"
+      :initial-index="0"
+      :loop="true"
+      @change="carouselChange">
+        <sm-carousel-item>
+          <div class="content">1</div>
+        </sm-carousel-item>
+        <sm-carousel-item>
+          <div class="content">2</div>
+        </sm-carousel-item>
+        <sm-carousel-item>
+          <div class="content">3</div>
+        </sm-carousel-item>
+      </sm-carousel>
+    </p>
   </div>
 </template>
 
@@ -210,6 +229,9 @@ export default {
       }
       return true
     },
+    carouselChange(value) {
+      console.log(value)
+    }
   }
 }
 </script>
@@ -251,5 +273,14 @@ export default {
   
   .sm-container:nth-child(7) .sm-aside {
     line-height: 320px;
+  }
+
+  .sm-carousel-item .content {
+    width: 100%;
+    height: 100%;
+    line-height: 150px;
+    background:#99a9bf;
+    text-align: center;
+    color: #fff;
   }
 </style>

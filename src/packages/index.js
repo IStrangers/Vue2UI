@@ -13,6 +13,8 @@ import Progress from "./progress/index.vue"
 import Upload from "./upload/index.vue"
 import DatePicker from "./date-picker/index.vue"
 import DateRangePicker from "./date-range-picker/index.vue"
+import Carousel from "./carousel/index.vue"
+import CarouselItem from "./carousel-item/index.vue"
 
 function install(vue) {
   vue.component(Icon.name,Icon)
@@ -30,6 +32,8 @@ function install(vue) {
   vue.component(Upload.name,Upload)
   vue.component(DatePicker.name,DatePicker)
   vue.component(DateRangePicker.name,DateRangePicker)
+  vue.component(Carousel.name,Carousel)
+  vue.component(CarouselItem.name,CarouselItem)
 }
 
 if(window.Vue) {
