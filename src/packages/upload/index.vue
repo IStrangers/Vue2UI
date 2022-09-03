@@ -17,11 +17,11 @@
         <ul>
           <li v-for="file in files" :key="file.uid">
             <div :class="getComponentName() + '-list-file'">
-              <sm-icon icon="file"></sm-icon>
+              <sm-icon icon="tickets"></sm-icon>
               {{file.name}}
               <sm-progress v-if="file.status === 'uploading'" :percentage="file.percentage"></sm-progress>
               {{file.status}}
-              <sm-icon icon="cha"></sm-icon>
+              <sm-icon icon="close"></sm-icon>
             </div>
           </li>
         </ul>

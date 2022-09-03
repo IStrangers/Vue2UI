@@ -5,7 +5,7 @@
   @drop.prevent="onDrag" 
   @dragover.prevent 
   @dragleave.prevent>
-    <sm-icon icon="shangchuan"></sm-icon>
+    <sm-icon icon="upload1"></sm-icon>
     <span>将文件拖拽到此区域或点击上传</span>
   </div>
 </template>

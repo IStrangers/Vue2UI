@@ -3,8 +3,8 @@
     <p>
       <sm-button>默认</sm-button>
       <sm-button loading>默认</sm-button>
-      <sm-button icon="sousuo">默认</sm-button>
-      <sm-button icon="sousuo" icon-position="right">默认</sm-button>
+      <sm-button icon="search">默认</sm-button>
+      <sm-button icon="search" icon-position="right">默认</sm-button>
       <sm-button type="primary">主要按钮</sm-button>
       <sm-button type="warning">警告按钮</sm-button>
       <sm-button type="danger">危险按钮</sm-button>
@@ -21,7 +21,7 @@
       </sm-button-group>
     </p>
     <p>
-      <sm-icon icon="sousuo"></sm-icon>
+      <sm-icon icon="search"></sm-icon>
       <sm-icon icon="edit"></sm-icon>
     </p>
     <p>
@@ -154,13 +154,23 @@
       >
         <sm-button 
         type="primary"
-        icon="shangchuan">
+        icon="upload">
           点击上传
         </sm-button>
         <div slot="tip">
           只能上传jpg/png文件，且不超过500kb
         </div>
       </sm-upload>
+    </p>
+    <p>
+      <sm-date-picker
+      v-model="datePicker"
+      ></sm-date-picker>
+      {{datePicker}}
+      <sm-date-range-picker
+      v-model="dateRangePicker"
+      ></sm-date-range-picker>
+      {{dateRangePicker}}
     </p>
   </div>
 </template>
@@ -175,7 +185,9 @@ export default {
   data() {
     return {
       userName: "",
-      fileList: []
+      fileList: [],
+      datePicker: null,
+      dateRangePicker: [new Date(),new Date()],
     }
   },
   methods: {

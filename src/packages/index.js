@@ -11,6 +11,8 @@ import Main from "./container/main/index.vue"
 import Input from "./input/index.vue"
 import Progress from "./progress/index.vue"
 import Upload from "./upload/index.vue"
+import DatePicker from "./date-picker/index.vue"
+import DateRangePicker from "./date-range-picker/index.vue"
 
 function install(vue) {
   vue.component(Icon.name,Icon)
@@ -26,6 +28,8 @@ function install(vue) {
   vue.component(Input.name,Input)
   vue.component(Progress.name,Progress)
   vue.component(Upload.name,Upload)
+  vue.component(DatePicker.name,DatePicker)
+  vue.component(DateRangePicker.name,DateRangePicker)
 }
 
 if(window.Vue) {

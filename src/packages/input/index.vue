@@ -12,17 +12,20 @@
     :placeholder="placeholder" 
     :value="value"
     :disabled="disabled"
-    @input="$emit('input',$event.target.value)"/>
+    @input="$emit('input',$event)"
+    @focus="$emit('focus',$event)"
+    @blur="$emit('blur',$event)"
+    @change="$emit('change',$event)"/>
 
     <sm-icon
-    icon="qingkong"
+    icon="circle-close"
     v-if="isClearable"
     @click="$emit('input','')"
     @mousedown.native.prevent
     ></sm-icon>
 
     <sm-icon
-    icon="eye"
+    icon="view"
     v-if="isShowPassword"
     @click="changePasswordVisible"
     ></sm-icon>
