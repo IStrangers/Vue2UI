@@ -44,11 +44,11 @@
       <div class="date-picker-content">
 
         <template v-if="mode === 'dates'">
-          <div>
+          <div class="date-row">
             <span v-for="week in weeks" :key="week" class="cell">{{week}}</span>
           </div>
-          <div v-for="i in 6" :key="`row-${i}`">
-            <span v-for="j in 7" :key="`col-${j}`" class="cell date-cell" :class="{
+          <div v-for="i in 6" :key="`date-row-${i}`" class="date-row">
+            <span v-for="j in 7" :key="`date-cell-${j}`" class="cell cell-day date-cell" :class="{
               'is-not-current-month': !isNotCurrentMonth(getCurrentDate(i,j)),
               'is-today': isToday(getCurrentDate(i,j)),
               'is-select': isSelect(getCurrentDate(i,j))
@@ -58,17 +58,23 @@
             </span>
           </div>
         </template>
-        <template v-else-if="mode === 'years'">
 
-        </template>
         <template v-else-if="mode === 'months'">
-          <div v-for="i in 3" :key="`row-${i}`">
-            <span v-for="j in 4" :key="`col-${j}`" class="cell date-cell">
-              {{}}
+          <div v-for="i in 3" :key="`date-row-${i}`" class="date-row">
+            <span v-for="j in 4" :key="`date-cell-${j}`" class="cell cell-month date-cell">
+              {{getCurrentMethod(i,j)}}
             </span>
           </div>
         </template>
         
+        <template v-else-if="mode === 'years'">
+          <div v-for="i in 3" :key="`date-row-${i}`" class="date-row">
+            <span v-for="j in (i == 3 ? 2 : 4)" :key="`date-cell-${j}`" class="cell cell-year date-cell">
+              {{getCurrentYear(i,j)}}
+            </span>
+          </div>
+        </template>
+
       </div>
 
     </div>
@@ -157,7 +163,6 @@ export default {
       this.mode = "dates"
     },
     handleChange(event) {
-      debugger
       const newValue = event.target.value
       const match = newValue.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
       if(match) {
@@ -168,6 +173,18 @@ export default {
     },
     getCurrentDate(i,j) {
       return this.visibleData[(i - 1) * 7 + (j - 1)]
+    },
+    getCurrentMethod(i,j) {
+      i -= 1
+      i *= 4
+      j -= 1
+      return this.months[i + j]
+    },
+    getCurrentYear(i,j) {
+      i -= 1
+      i *= 4
+      j -= 1
+      return this.startYear + i + j
     },
     isNotCurrentMonth(date) {
       const { year,month } = this.tempTime
@@ -233,31 +250,44 @@ export default {
       }
       .date-picker-content {
 
-        .cell {
-          width: 40px;
-          height: 40px;
-          display: inline-block;
-          text-align: center;
-          line-height: 40px;
-          font-weight: 400;
+        .date-row {
+          display: flex;
+
+          .cell {
+            flex: 1;
+            display: inline-block;
+            text-align: center;
+            font-weight: 400;
+          }
+          .cell-day {
+            line-height: 40px;
+            height: 40px;
+          }
+          .cell-month,
+          .cell-year {
+            line-height: 60px;
+            height: 60px;
+          }
+          .date-cell {
+            cursor: pointer;
+          }
+          .date-cell:hover {
+            color: $primary;
+          }
+          .date-cell.is-not-current-month {
+            color: #ccc;
+          }
+          .date-cell.is-today {
+            color: $primary;
+          }
+          .date-cell.is-select {
+            color: #fff;
+            background: $primary;
+            border-radius: 50%;
+          }
+
         }
-        .date-cell {
-          cursor: pointer;
-        }
-        .date-cell:hover {
-          color: $primary;
-        }
-        .date-cell.is-not-current-month {
-          color: #ccc;
-        }
-        .date-cell.is-today {
-          color: $primary;
-        }
-        .date-cell.is-select {
-          color: #fff;
-          background: $primary;
-          border-radius: 50%;
-        }
+
       }
 
     }

@@ -166,11 +166,9 @@
       <sm-date-picker
       v-model="datePicker"
       ></sm-date-picker>
-      {{datePicker}}
       <sm-date-range-picker
       v-model="dateRangePicker"
       ></sm-date-range-picker>
-      {{dateRangePicker}}
     </p>
   </div>
 </template>
