@@ -189,6 +189,24 @@
         </sm-carousel-item>
       </sm-carousel>
     </p>
+    <p>
+      <sm-table 
+      height="200px"
+      :columns="tableColumns" 
+      :data="tableData"
+      @on-select="tableOnSelect"
+      @on-select-all="tableOnSelectAll"
+      @on-sort-change="tableOnSortChange">
+        <template slot="name" slot-scope="{row,col}">
+          <strong style="color: green;">{{row[col.key]}}</strong>
+        </template>
+      </sm-table>
+      <sm-pagination
+      :total="10"
+      :pager-count="7"
+      :current-page.sync="currentPage"
+      ></sm-pagination>
+    </p>
   </div>
 </template>
 
@@ -205,6 +223,57 @@ export default {
       fileList: [],
       datePicker: null,
       dateRangePicker: [new Date(),new Date()],
+      currentPage: 5,
+      tableColumns: [
+        {
+          type: "selection",
+          width: "60px"
+        },
+        {
+          title: "名称",
+          key: "name",
+          sortable: "custom",
+          sortType: "asc",
+          slot: "name"
+        },
+        {
+          title: "年龄",
+          key: "age",
+          sortable: true,
+          sortType: "asc"
+        },
+        {
+          title: "地址",
+          key: "address"
+        },
+      ],
+      tableData: [
+        {
+          name: "大法官",
+          age: "55",
+          address: "北京朝阳区",
+        },
+        {
+          name: "东方红",
+          age: "33",
+          address: "上海浦东",
+        },
+        {
+          name: "黄家驹",
+          age: "26",
+          address: "香港湾仔区",
+        },
+        {
+          name: "金克拉",
+          age: "23",
+          address: "美国华盛顿",
+        },
+        {
+          name: "黄伟文",
+          age: "45",
+          address: "广东广州",
+        },
+      ]
     }
   },
   methods: {
@@ -231,6 +300,15 @@ export default {
     },
     carouselChange(value) {
       console.log(value)
+    },
+    tableOnSelect(selection,row) {
+      console.log(selection,row)
+    },
+    tableOnSelectAll(selection) {
+      console.log(selection)
+    },
+    tableOnSortChange(col,type) {
+      console.log(col,type)
     }
   }
 }

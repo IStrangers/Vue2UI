@@ -15,6 +15,8 @@ import DatePicker from "./date-picker/index.vue"
 import DateRangePicker from "./date-range-picker/index.vue"
 import Carousel from "./carousel/index.vue"
 import CarouselItem from "./carousel-item/index.vue"
+import Pagination from "./pagination/index.vue"
+import Table from "./table/index.vue"
 
 function install(vue) {
   vue.component(Icon.name,Icon)
@@ -34,6 +36,8 @@ function install(vue) {
   vue.component(DateRangePicker.name,DateRangePicker)
   vue.component(Carousel.name,Carousel)
   vue.component(CarouselItem.name,CarouselItem)
+  vue.component(Pagination.name,Pagination)
+  vue.component(Table.name,Table)
 }
 
 if(window.Vue) {
